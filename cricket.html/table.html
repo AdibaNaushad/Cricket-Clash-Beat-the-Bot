@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Result Table</title>
+    <style>
+        table {
+            width: 70%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        th,
+        td {
+            border: 2px solid black;
+            padding: 10px;
+            color: black;
+            /* text color */
+        }
+
+        th {
+            background-color: gold;
+            /* header color */
+        }
+
+        tr:nth-child(even) {
+            background-color: #fff176;
+            /* light yellow */
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffeb3b;
+            /* yellow */
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="text-align:center;">Game Results</h2>
+    <table>
+        <tr>
+            <th>Number of Round</th>
+            <th>No. of Win</th>
+            <th>No. of Lose</th>
+            <th>No. of Tie</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+        </tr>
+    </table>
+</body>
+
+</html>

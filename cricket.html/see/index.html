@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Red Yellow Energy Background</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0000;
+            overflow: hidden;
+        }
+
+        .bg {
+            position: absolute;
+            inset: 0;
+
+            background:
+                /* diagonal energy streaks */
+                repeating-linear-gradient(120deg,
+                    rgba(255, 200, 0, 0.25) 0px,
+                    rgba(255, 200, 0, 0.25) 8px,
+                    rgba(255, 60, 0, 0.3) 16px,
+                    rgba(255, 60, 0, 0.3) 24px),
+
+                /* heat core */
+                radial-gradient(circle at center,
+                    rgba(255, 240, 150, 0.6),
+                    rgba(255, 120, 0, 0.5),
+                    rgba(120, 0, 0, 0.9));
+
+            animation: pulse 6s ease-in-out infinite;
+            filter: contrast(1.2) saturate(1.4);
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                filter: brightness(1) saturate(1.4);
+            }
+
+            50% {
+                transform: scale(1.03);
+                filter: brightness(1.15) saturate(1.6);
+            }
+        }
+
+        /* hard vignette */
+        .bg::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center,
+                    rgba(0, 0, 0, 0) 35%,
+                    rgba(0, 0, 0, 0.9) 100%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg"></div>
+</body>
+
+</html>

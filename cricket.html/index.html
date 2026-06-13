@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+
+
+    <title>🏏 Cricket Clash: Beat the Bot! 🤖🔥</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: red;
+        }
+
+        .heading {
+            font-size: 30px;
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            text-decoration: underline;
+        }
+
+        .paragraph-wrt {
+            font-size: 20px;
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .options>div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        img {
+            width: 200px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%;
+            text-decoration: underline;
+            padding: 20px;
+        }
+
+        button {
+            background-color: #ffeb3b;
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 12px 24px;
+            margin-top: 10px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-family: 'Press Start 2P', cursive;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 235, 59, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #fff176;
+            color: black;
+            box-shadow: 0 6px 14px rgba(255, 235, 59, 0.9);
+            transform: scale(1.05);
+        }
+
+        table {
+            width: 80%;
+            border-collapse: separate;
+            border-spacing: 8px;
+            margin: 20px auto;
+            text-align: center;
+            font-size: 18px;
+            font-family: 'Press Start 2P', cursive;
+
+        }
+
+        th,
+        td {
+            border: 0px solid black;
+            padding: 10px;
+            color: rgb(0, 0, 0);
+            /* text color */
+            border-radius: 2px;
+        }
+
+        th {
+            background-color: gold;
+            /* header color */
+        }
+
+        tr:nth-child(even) {
+            background-color: #fff176;
+            /* light yellow */
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffeb3b;
+            /* yellow */
+        }
+
+        .game-result {
+            font-size: 30px;
+            color: beige;
+
+
+        }
+
+        .Rules {
+            font-size: 20px;
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            height: auto;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 class="heading"><i>Welcome to the Ultimate Cricket Showdown!🏏🎉🏁 </i></h2>
+    <div class="Rules">
+        <h2 class="paragraph-wrt"> It’s YOU vs COMPUTER — who will dominate the pitch? <br> <br> </h2>
+        <p>
+
+
+            Choose your move: Bat, Ball, or Stump🏏🔥 <br>
+
+        <ul> Cricket Clash Rules:
+
+            1️⃣ Same move → Tie! 🤝
+            2️⃣ Bat beats Ball → You Win! 🏆
+            3️⃣ Stump beats Bat → You’re Out! 😢
+        </ul>
+        <br>
+
+        Choose wisely and play to win! ⚡🎯<br>
+        outsmart the computer and claim your cricket victory!
+        </p>
+    </div>
+
+    <div class="options">
+        <div class="boxMaking1">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm1tB7QqRKZ_Lkk8FzKy5AggTYJ6j03u8-cQ&s"
+                alt="Bat">
+            <button onclick="
+          let computerChoice = generateComputerChoice();
+          let resultMsg = getResult('Bat', computerChoice);
+          showResult('Bat', computerChoice, resultMsg);
+           ">Bat</button>
+        </div>
+        <div class="boxMaking2">
+            <img src="https://media.istockphoto.com/id/497145305/vector/cricket-player-fast-bowler-illustration.jpg?s=612x612&w=0&k=20&c=Wvng4FjQl7WI-vF1qs2lHEfD6cGmX-3bGpHovNK-eJw="
+                alt="">
+            <button onclick="
+          computerChoice = generateComputerChoice();
+          resultMsg = getResult('Ball', computerChoice);
+          showResult('Ball', computerChoice, resultMsg);
+          ">Ball</button>
+        </div>
+
+
+        <div class="boxMaking3">
+            <img src="https://w0.peakpx.com/wallpaper/122/844/HD-wallpaper-cricket-wicket-wishes-thumbnail.jpg"
+                alt="">
+            <button onclick="
+          computerChoice = generateComputerChoice();
+          resultMsg = getResult('Stump', computerChoice);
+          showResult('Stump', computerChoice, resultMsg);
+        ">Stump</button>
+        </div>
+    </div>
+
+    <button id="resetButton" onclick="localStorage.getItem('score');
+    resetScore(scoreStr);
+    alert(`Score-Board is updated ! Now select new option `);
+
+    
+    ">Reset</button>
+
+    <h2 style="text-align:center;" class="game-result">Game Results</h2>
+    <table>
+        <tr>
+            <th>Number of Round</th>
+            <th>No. of Win</th>
+            <th>No. of Lose</th>
+            <th>No. of Tie</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td id="score-win">0</td>
+            <td id="score-lose">0</td>
+            <td id="score-tie">0</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+    </table>
+
+    <footer>This Game is Made by ADIBA NAUSHAD </footer>
+
+
+    <script>
+
+
+
+        let scoreStr = localStorage.getItem('Score');
+        let score
+        resetScore(scoreStr);
+        function resetScore(scoreStr) {
+            score = scoreStr ? JSON.parse(scoreStr) : {
+
+                win: 0,
+                lost: 0,
+                tie: 0,
+
+
+            };
+            
+            score.displayScore = function () {
+                return `No of matches Won:${score.win}, Lost:${score.lost}, Tie: ${score.tie}`;
+
+            };
+            localStorage.clear();
+        }
+
+
+
+        function generateComputerChoice() {
+            //This will generate random number between 0 and 3
+            let randomNumber = Math.random() * 3;
+            if (randomNumber > 0 && randomNumber <= 1) {
+                return 'Bat';
+            } else if (randomNumber > 1 && randomNumber <= 2) {
+                return 'Ball';
+            } else {
+                return 'Stump'
+            }
+        }
+
+        function getResult(userMove, computerMove) {
+            if (userMove === 'Bat') {
+                if (computerMove === 'Ball') {
+                    score.win++;
+                    return 'User won.';
+                } else if (computerMove === 'Bat') {
+                    score.tie++;
+                    return `It's a tie`;
+                } else if (computerMove === 'Stump') {
+                    score.lost++;
+                    return 'Computer has won';
+                }
+            } else if (userMove === 'Ball') {
+                if (computerMove === 'Ball') {
+                    score.tie++;
+                    return `It's a tie`;
+                } else if (computerMove === 'Bat') {
+                    score.lost++;
+                    return 'Computer has won';
+                } else if (computerMove === 'Stump') {
+                    score.win++;
+                    return 'User won.';
+                }
+            } else {
+                if (computerMove === 'Ball') {
+                    score.lost++;
+                    return 'Computer has won';
+                } else if (computerMove === 'Bat') {
+                    score.win++;
+                    return 'User won.';
+                } else if (computerMove === 'Stump') {
+                    score.tie++;
+                    return `It's a tie`;
+                }
+            }
+        }
+
+        function showResult(userMove, computerMove, result) {
+            localStorage.setItem('score', JSON.stringify(score));
+            document.querySelector('#score-win').innerText = `${score.win}`;
+            document.querySelector('#score-lose').innerText = ` ${score.lost}`;
+            document.querySelector('#score-tie').innerText = `${score.tie}`;
+            // document.querySelector('#score').innerText = score;
+
+
+            alert(`You have chosen ${userMove}. Computer choice is ${computerMove} and ${result} 
+
+
+          ${score.displayScore()} `);
+
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>
